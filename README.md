@@ -2,7 +2,7 @@
 
 A service request form and job board for Cedar & Copper Plumbing, a fictional plumbing company in Kitchener-Waterloo. One request produces a priority, a job checklist, a customer message, a calendar event and a spreadsheet row. It is a demo with made-up data.
 
-Live: https://casimbahadar.github.io/demo-job-intake/
+Live: https://casimbahadar.github.io/job-intake/
 
 ## What it does
 
