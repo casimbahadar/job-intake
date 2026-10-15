@@ -1,0 +1,121 @@
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="wordmark" href="https://casimbahadar.github.io/"><span class="mark" aria-hidden="true"></span>Casim Bahadar</a>
+    <span class="demo-flag">Demo with made-up data</span>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap intro">
+    <h1>Take a job request and track it</h1>
+    <p class="lede">One customer request becomes a priority, a checklist, a message, a calendar event and a spreadsheet row.</p>
+    <div class="actions">
+      <button class="btn btn-primary" id="btn-fill" type="button">Fill in a made-up request</button>
+      <button class="btn btn-quiet" id="btn-sample-top" type="button">Load sample data</button>
+    </div>
+    <div class="privacy"><p><strong>Nothing leaves this browser.</strong> Requests are saved only on this device, the page's security settings block it from sending data anywhere, and it isn't connected to any calendar, email or text service. Please use made-up details, not real ones.</p></div>
+    <details>
+      <summary>How it works</summary>
+      <p>A customer fills in one form. The page checks every field, sets a priority by rules you can read below the form, and produces a job checklist, a message to send the customer, a calendar event and a spreadsheet row. The office then moves each job along a status board: New, Scheduled, In progress and Done. "Load sample data" puts 8 made-up jobs on the board.</p>
+    </details>
+  </div>
+
+  <section class="wrap step" aria-labelledby="h-form">
+    <div class="step-head"><span class="step-num" aria-hidden="true">1</span><h2 id="h-form">What the customer sees</h2></div>
+    <p class="company"><b id="company-name">Cedar &amp; Copper Plumbing</b><span class="note-inline">A fictional company in Kitchener-Waterloo</span></p>
+
+    <form id="form" novalidate>
+      <div class="error-summary" id="error-summary" tabindex="-1" hidden>
+        <h3>Check these before sending</h3>
+        <ul id="error-list"></ul>
+      </div>
+
+      <div class="field"><label for="f-name">Your name</label><input type="text" id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><span class="err" id="e-name"></span></div>
+      <div class="pair-fields">
+        <div class="field"><label for="f-phone">Phone</label><input type="tel" id="f-phone" name="phone" autocomplete="tel" inputmode="tel" aria-describedby="h-phone e-phone"><span class="help" id="h-phone">10 digits, like 519-555-0142</span><span class="err" id="e-phone"></span></div>
+        <div class="field"><label for="f-email">Email <span class="opt">(optional)</span></label><input type="email" id="f-email" name="email" autocomplete="email" aria-describedby="e-email"><span class="err" id="e-email"></span></div>
+      </div>
+      <div class="field"><label for="f-address">Street address</label><input type="text" id="f-address" name="address" autocomplete="street-address" aria-describedby="e-address"><span class="err" id="e-address"></span></div>
+      <div class="pair-fields">
+        <div class="field"><label for="f-city">City</label><input type="text" id="f-city" name="city" autocomplete="address-level2" aria-describedby="e-city"><span class="err" id="e-city"></span></div>
+        <div class="field"><label for="f-postal">Postal code</label><input type="text" id="f-postal" name="postal" autocomplete="postal-code" autocapitalize="characters" aria-describedby="e-postal"><span class="err" id="e-postal"></span></div>
+      </div>
+
+      <fieldset class="field" id="f-type" aria-describedby="e-type">
+        <legend>What do you need?</legend>
+        <div class="choices two" id="type-choices"></div>
+        <span class="err" id="e-type"></span>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Is any of this happening now? <span class="opt">(tick any that apply)</span></legend>
+        <label class="choice"><input type="checkbox" id="f-leak" name="leak"> Water is leaking right now</label>
+        <label class="choice"><input type="checkbox" id="f-sewage" name="sewage"> Sewage is backing up</label>
+        <label class="choice"><input type="checkbox" id="f-gas" name="gas"> I smell gas</label>
+        <div class="danger" id="gas-warning" role="alert" hidden>
+          <h3>Leave the building now</h3>
+          <p>Don't use phones or light switches near the smell. Once you're somewhere safe, call 911 or your gas utility's emergency line.</p>
+          <p>This form can't book a visit for a gas smell.</p>
+        </div>
+      </fieldset>
+
+      <div class="field"><label for="f-desc">Describe the problem</label><textarea class="box" id="f-desc" name="desc" maxlength="1000" aria-describedby="e-desc"></textarea><span class="err" id="e-desc"></span></div>
+
+      <div class="pair-fields">
+        <div class="field"><label for="f-date">Preferred visit date</label><input type="date" id="f-date" name="date" aria-describedby="e-date"><span class="err" id="e-date"></span></div>
+        <fieldset class="field" id="f-window" aria-describedby="e-window">
+          <legend>Time of day</legend>
+          <div class="choices" id="window-choices"></div>
+          <span class="err" id="e-window"></span>
+        </fieldset>
+      </div>
+
+      <div class="actions"><button class="btn btn-primary" id="btn-send" type="submit">Send request</button></div>
+    </form>
+
+    <div class="rules" id="rules">
+      <h3>How priority is set</h3>
+      <p class="small" style="margin-bottom: var(--s2)">The first rule that fits decides it.</p>
+      <ol>
+        <li><b>Urgent</b> if water is leaking right now.</li>
+        <li><b>Urgent</b> if sewage is backing up.</li>
+        <li><b>Urgent</b> if there's no heat and the request comes in between October and April.</li>
+        <li><b>Soon</b> if the preferred visit is within 7 days.</li>
+        <li><b>Routine</b> for everything else.</li>
+      </ol>
+      <p class="small" style="margin: var(--s2) 0 0">A gas smell never becomes a booking. The form shows safety steps instead.</p>
+    </div>
+
+    <div class="output" id="output" tabindex="-1" hidden></div>
+  </section>
+
+  <section class="wrap step" aria-labelledby="h-board">
+    <div class="step-head"><span class="step-num" aria-hidden="true">2</span><h2 id="h-board" tabindex="-1">What the office sees</h2></div>
+    <p id="board-summary" role="status"></p>
+    <div class="toolbar">
+      <button class="btn btn-primary" id="btn-sample" type="button">Load sample data</button>
+      <button class="btn btn-quiet" id="btn-export" type="button">Export all jobs as CSV</button>
+      <button class="btn btn-quiet" id="btn-clear" type="button">Clear demo data</button>
+    </div>
+    <p class="small muted" id="storage-note"></p>
+    <div class="board-filter"><label for="board-show">Show</label><select id="board-show"></select></div>
+    <div class="board" id="board"></div>
+    <p class="sr-only" id="announce" aria-live="polite"></p>
+  </section>
+
+  <aside class="wrap biz" aria-labelledby="h-biz">
+    <div class="biz-box">
+      <h2 id="h-biz">What this would look like for your business</h2>
+      <p>This demo stops at the point where tools usually stop talking to each other: it makes the calendar file, the message and the spreadsheet row, and you move them yourself. A version built for you could send the confirmation by email or text, put the visit in your real calendar and add the row to your spreadsheet or job software, with your own request types, rules and checklists.</p>
+      <p><a href="https://casimbahadar.github.io/contact.html">Tell me how requests reach you today</a></p>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Built by Casim Bahadar, solutions developer in Kitchener-Waterloo, Ontario.</p>
+    <p><a href="https://casimbahadar.github.io/work.html">See more work</a> or <a href="https://casimbahadar.github.io/contact.html">get in touch</a>.</p>
+  </div>
+</footer>
